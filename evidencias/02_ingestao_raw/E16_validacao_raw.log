@@ -1,0 +1,46 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/08/15 22:39:02 WARN Utils: Your hostname, DESKTOP-8FOB866, resolves to a loopback address: 127.0.1.1; using 10.255.255.254 instead (on interface lo)
+26/08/15 22:39:02 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/08/15 22:39:03 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+================================================================================
+ATIVIDADE 3 - VALIDACAO DA CAMADA RAW
+================================================================================
+
+VALIDACAO DAS BASES DE RECLAMACOES
+--------------------------------------------------------------------------------
+2021_tri_01: registros=105; colunas=15; _c14_preenchida=0; todas_colunas_string=True
+2021_tri_02: registros=111; colunas=15; _c14_preenchida=0; todas_colunas_string=True
+2021_tri_03: registros=113; colunas=15; _c14_preenchida=0; todas_colunas_string=True
+2021_tri_04: registros=135; colunas=15; _c14_preenchida=0; todas_colunas_string=True
+2022_tri_01: registros=137; colunas=15; _c14_preenchida=0; todas_colunas_string=True
+2022_tri_03: registros=163; colunas=15; _c14_preenchida=0; todas_colunas_string=True
+2022_tri_04: registros=154; colunas=15; _c14_preenchida=0; todas_colunas_string=True
+--------------------------------------------------------------------------------
+TOTAL DE RECLAMACOES: 918
+TOTAL DE _c14 PREENCHIDA: 0
+
+VALIDACAO DA BASE DE ENQUADRAMENTO
+--------------------------------------------------------------------------------
+Registros: 1474
+Colunas: 3
+Nomes: ['Segmento', 'CNPJ', 'Nome']
+
+VALIDACAO DAS BASES GLASSDOOR
+--------------------------------------------------------------------------------
+glassdoor_consolidado_join_match_less_v2: registros=5; colunas=23
+Colunas: ['employer_name', 'reviews_count', 'culture_count', 'salaries_count', 'benefits_count', 'employer-website', 'employer-headquarters', 'employer-founded', 'employer-industry', 'employer-revenue', 'url', 'Geral', 'Cultura e valores', 'Diversidade e inclusão', 'Qualidade de vida', 'Alta liderança', 'Remuneração e benefícios', 'Oportunidades de carreira', 'Recomendam para outras pessoas(%)', 'Perspectiva positiva da empresa(%)', 'CNPJ', 'Nome', 'match_percent']
+glassdoor_consolidado_join_match_v2: registros=34; colunas=23
+Colunas: ['employer_name', 'reviews_count', 'culture_count', 'salaries_count', 'benefits_count', 'employer-website', 'employer-headquarters', 'employer-founded', 'employer-industry', 'employer-revenue', 'url', 'Geral', 'Cultura e valores', 'Diversidade e inclusão', 'Qualidade de vida', 'Alta liderança', 'Remuneração e benefícios', 'Oportunidades de carreira', 'Recomendam para outras pessoas(%)', 'Perspectiva positiva da empresa(%)', 'Segmento', 'Nome', 'match_percent']
+
+================================================================================
+RESULTADO DA AUDITORIA RAW
+================================================================================
+[OK] Total de reclamacoes = 918
+[OK] _c14 esta vazia em todos os registros.
+[OK] Enquadramento = 1474 registros.
+
+VALIDACAO DA CAMADA RAW CONCLUIDA.

@@ -1,0 +1,29 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/08/15 22:50:06 WARN Utils: Your hostname, DESKTOP-8FOB866, resolves to a loopback address: 127.0.1.1; using 10.255.255.254 instead (on interface lo)
+26/08/15 22:50:06 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/08/15 22:50:07 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+================================================================================
+ATIVIDADE 3 - CAMADA TRUSTED - RECLAMACOES
+================================================================================
+
+Registros recebidos da RAW: 918
+Colunas recebidas da RAW: 16
+[OK] Coluna _c14 removida.
+Traceback (most recent call last):
+  File "/mnt/d/GitHub/C3-Trabalho-Ingestao-Pipeline/Atividade_3–Ingestao_ETL_Python_Spark/./src/05_trusted_reclamacoes.py", line 263, in <module>
+    main()
+    ~~~~^^
+  File "/mnt/d/GitHub/C3-Trabalho-Ingestao-Pipeline/Atividade_3–Ingestao_ETL_Python_Spark/./src/05_trusted_reclamacoes.py", line 164, in main
+                F.regexp_replace(
+                ~~~~~~~~~~~~~~~~^
+    		...
+      ^^^
+    	    ),
+         ^
+  File "/home/breno_tostes/venvs/atividade3_spark_wsl/lib/python3.14/site-packages/pyspark/sql/utils.py", line 282, in wrapped
+    return f(*args, **kwargs)
+TypeError: regexp_replace() missing 2 required positional arguments: 'pattern' and 'replacement'

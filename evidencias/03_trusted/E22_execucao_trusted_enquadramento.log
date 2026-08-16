@@ -1,0 +1,78 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/08/15 22:53:40 WARN Utils: Your hostname, DESKTOP-8FOB866, resolves to a loopback address: 127.0.1.1; using 10.255.255.254 instead (on interface lo)
+26/08/15 22:53:40 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/08/15 22:53:41 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[Stage 13:>                                                         (0 + 1) / 1]                                                                                ================================================================================
+ATIVIDADE 3 - CAMADA TRUSTED - ENQUADRAMENTO
+================================================================================
+
+Registros recebidos da RAW: 1474
+Colunas recebidas: 3
+Nomes originais: ['Segmento', 'CNPJ', 'Nome']
+
+--------------------------------------------------------------------------------
+VALIDACOES
+--------------------------------------------------------------------------------
+Registros antes: 1474
+Registros depois: 1474
+CNPJ nulos: 0
+Nome nulos: 0
+Segmento nulos: 0
+
+SEGMENTOS ENCONTRADOS:
++--------+-----+
+|segmento|count|
++--------+-----+
+|S1      |12   |
+|S2      |11   |
+|S3      |49   |
+|S4      |419  |
+|S5      |983  |
++--------+-----+
+
+
+COMPRIMENTO DOS CNPJS:
++------------+-----+
+|tamanho_cnpj|count|
++------------+-----+
+|           1|    2|
+|           3|    2|
+|           5|    3|
+|           6|   51|
+|           7|  619|
+|           8|  797|
++------------+-----+
+
+[OK] Quantidade de registros preservada: 1474.
+
+SCHEMA FINAL:
+root
+ |-- segmento: string (nullable = true)
+ |-- cnpj: string (nullable = true)
+ |-- nome: string (nullable = true)
+
+
+AMOSTRA:
++--------+--------+---------------------------------------------+
+|segmento|cnpj    |nome                                         |
++--------+--------+---------------------------------------------+
+|S1      |0       |BANCO DO BRASIL - PRUDENCIAL                 |
+|S1      |60746948|BRADESCO - PRUDENCIAL                        |
+|S1      |30306294|BTG PACTUAL - PRUDENCIAL                     |
+|S1      |360305  |CAIXA ECONOMICA FEDERAL - PRUDENCIAL         |
+|S1      |60872504|ITAU - PRUDENCIAL                            |
+|S1      |90400888|SANTANDER - PRUDENCIAL                       |
+|S2      |92702067|BANRISUL - PRUDENCIAL                        |
+|S2      |7237373 |BANCO DO NORDESTE DO BRASIL S.A. - PRUDENCIAL|
+|S2      |33657248|BNDES - PRUDENCIAL                           |
+|S2      |33479023|CITIBANK - PRUDENCIAL                        |
++--------+--------+---------------------------------------------+
+only showing top 10 rows
+
+Trusted gravada em: data/trusted/enquadramento
+
+CAMADA TRUSTED DE ENQUADRAMENTO CONCLUIDA COM SUCESSO.

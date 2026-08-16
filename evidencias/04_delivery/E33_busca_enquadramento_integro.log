@@ -1,0 +1,53 @@
+====================================================================================================
+ATIVIDADE 3 - BUSCA POR COPIA INTEGRA DO ENQUADRAMENTO
+====================================================================================================
+
+Arquivos encontrados: 4
+
+----------------------------------------------------------------------------------------------------
+ARQUIVO 1
+----------------------------------------------------------------------------------------------------
+Caminho: /mnt/d/GitHub/C3-Trabalho-Ingestao-Pipeline/Atividade_3–Ingestao_ETL_Python_Spark/data/input/EnquadramentoInicia_v2.tsv
+Tamanho: 134507 bytes
+SHA-256: 6c423823b24a571fcfdb50ee8ec4737b31815deb8800a28af53134f0f4764432
+UTF-8 estrito valido: True
+Sequencias EF BF BD nos bytes: 3109
+Caracteres U+FFFD apos UTF-8: 3109
+[CORROMPIDO] Possui caracteres de substituicao gravados.
+
+----------------------------------------------------------------------------------------------------
+ARQUIVO 2
+----------------------------------------------------------------------------------------------------
+Caminho: /mnt/d/Users/Breno Tostes/OneDrive/Pastas/Academico/Especializacao/Engenharia-Dados-Big-Data/C3/02_Ingestão e Pipeline/Atividades/Atividade_1–Ingestao_ETL_Visual/data/EnquadramentoInicia_v2.tsv
+Tamanho: 134507 bytes
+SHA-256: 6c423823b24a571fcfdb50ee8ec4737b31815deb8800a28af53134f0f4764432
+UTF-8 estrito valido: True
+Sequencias EF BF BD nos bytes: 3109
+Caracteres U+FFFD apos UTF-8: 3109
+[CORROMPIDO] Possui caracteres de substituicao gravados.
+
+----------------------------------------------------------------------------------------------------
+ARQUIVO 3
+----------------------------------------------------------------------------------------------------
+Caminho: /mnt/d/Users/Breno Tostes/OneDrive/Pastas/Academico/Especializacao/Engenharia-Dados-Big-Data/C3/02_Ingestão e Pipeline/Atividades/Atividade_2–Ingestao_ETL_Python/data/input/EnquadramentoInicia_v2.tsv
+Tamanho: 134507 bytes
+SHA-256: 6c423823b24a571fcfdb50ee8ec4737b31815deb8800a28af53134f0f4764432
+UTF-8 estrito valido: True
+Sequencias EF BF BD nos bytes: 3109
+Caracteres U+FFFD apos UTF-8: 3109
+[CORROMPIDO] Possui caracteres de substituicao gravados.
+
+----------------------------------------------------------------------------------------------------
+ARQUIVO 4
+----------------------------------------------------------------------------------------------------
+Caminho: /mnt/d/Users/Breno Tostes/OneDrive/Pastas/Academico/Especializacao/Engenharia-Dados-Big-Data/C3/02_Ingestão e Pipeline/Atividades/Dados/Bancos/EnquadramentoInicia_v2.tsv
+Tamanho: 135982 bytes
+SHA-256: 1ece7b09758eed2f75f07df98793018784631b473a75ed02ad3b4fb0237b18fa
+UTF-8 estrito valido: True
+Sequencias EF BF BD nos bytes: 3109
+Caracteres U+FFFD apos UTF-8: 3109
+[CORROMPIDO] Possui caracteres de substituicao gravados.
+
+====================================================================================================
+BUSCA CONCLUIDA
+====================================================================================================

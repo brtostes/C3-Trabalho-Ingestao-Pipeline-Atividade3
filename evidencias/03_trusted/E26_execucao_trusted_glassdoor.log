@@ -1,0 +1,132 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/08/15 22:57:59 WARN Utils: Your hostname, DESKTOP-8FOB866, resolves to a loopback address: 127.0.1.1; using 10.255.255.254 instead (on interface lo)
+26/08/15 22:57:59 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/08/15 22:57:59 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[Stage 10:>                                                         (0 + 1) / 1]                                                                                ================================================================================
+ATIVIDADE 3 - CAMADA TRUSTED - GLASSDOOR
+================================================================================
+
+================================================================================
+GLASSDOOR MATCH
+================================================================================
+Registros antes: 34
+Registros depois: 34
+Colunas: 24
+
+Distribuicao do match_percent:
++-------------+-----+
+|match_percent|count|
++-------------+-----+
+|100.00       |24   |
+|98.00        |1    |
+|88.00        |1    |
+|86.00        |1    |
+|84.00        |1    |
+|80.00        |1    |
+|77.00        |1    |
+|75.00        |1    |
+|73.00        |1    |
+|70.00        |1    |
+|65.00        |1    |
++-------------+-----+
+
+
+Schema:
+root
+ |-- employer_name: string (nullable = true)
+ |-- reviews_count: long (nullable = true)
+ |-- culture_count: long (nullable = true)
+ |-- salaries_count: long (nullable = true)
+ |-- benefits_count: long (nullable = true)
+ |-- employer_website: string (nullable = true)
+ |-- employer_headquarters: string (nullable = true)
+ |-- employer_founded: integer (nullable = true)
+ |-- employer_industry: string (nullable = true)
+ |-- employer_revenue: string (nullable = true)
+ |-- url: string (nullable = true)
+ |-- geral: decimal(10,2) (nullable = true)
+ |-- cultura_valores: decimal(10,2) (nullable = true)
+ |-- diversidade_inclusao: decimal(10,2) (nullable = true)
+ |-- qualidade_vida: decimal(10,2) (nullable = true)
+ |-- alta_lideranca: decimal(10,2) (nullable = true)
+ |-- remuneracao_beneficios: decimal(10,2) (nullable = true)
+ |-- oportunidades_carreira: decimal(10,2) (nullable = true)
+ |-- recomendam_outras_pessoas_pct: decimal(10,2) (nullable = true)
+ |-- perspectiva_positiva_empresa_pct: decimal(10,2) (nullable = true)
+ |-- segmento: string (nullable = true)
+ |-- nome: string (nullable = true)
+ |-- match_percent: decimal(10,2) (nullable = true)
+ |-- tipo_correspondencia: string (nullable = false)
+
+
+Amostra:
++--------------+-------------+-------------+--------------+--------------+-------------------------------+---------------------+----------------+-----------------------------------------------------------------------------------+--------------------------+----------------------------------------------------------------------------------------------+-----+---------------+--------------------+--------------+--------------+----------------------+----------------------+-----------------------------+--------------------------------+--------+-----------+-------------+--------------------+
+|employer_name |reviews_count|culture_count|salaries_count|benefits_count|employer_website               |employer_headquarters|employer_founded|employer_industry                                                                  |employer_revenue          |url                                                                                           |geral|cultura_valores|diversidade_inclusao|qualidade_vida|alta_lideranca|remuneracao_beneficios|oportunidades_carreira|recomendam_outras_pessoas_pct|perspectiva_positiva_empresa_pct|segmento|nome       |match_percent|tipo_correspondencia|
++--------------+-------------+-------------+--------------+--------------+-------------------------------+---------------------+----------------+-----------------------------------------------------------------------------------+--------------------------+----------------------------------------------------------------------------------------------+-----+---------------+--------------------+--------------+--------------+----------------------+----------------------+-----------------------------+--------------------------------+--------+-----------+-------------+--------------------+
+|BNP Paribas   |13000        |4100         |20000         |3600          |http://www.group.bnpparibas    |Paris, França        |2000            |/Explorar/melhores-serviços-bancários-e-de-crédito-empresas_II.9,40_IIND200048.htm |Mais de US$ 10 bilhões    |https://www.glassdoor.com.br/Vis%C3%A3o-geral/Trabalhar-na-BNP-Paribas-EI_IE10342.13,24.htm   |3.80 |3.70           |4.00                |3.80          |3.40          |3.40                  |3.50                  |77.00                        |63.00                           |S3      |BNP PARIBAS|100.00       |match               |
+|BTG Pactual   |1600         |683          |2800          |635           |http://www.btgpactual.com      |São Paulo, Brasil    |NULL            |/Explorar/melhores-gestão-de-ativos-e-investimentos-empresas_II.9,41_IIND200146.htm|Desconhecida/não se aplica|https://www.glassdoor.com.br/Vis%C3%A3o-geral/Trabalhar-na-BTG-Pactual-EI_IE411540.13,24.htm  |4.00 |3.70           |3.50                |2.80          |3.70          |4.40                  |4.20                  |78.00                        |73.00                           |S1      |BTG PACTUAL|100.00       |match               |
+|Banco Alfa    |175          |74           |271           |105           |http://www.alfanet.com.br      |São Paulo, Brasil    |1925            |/Explorar/melhores-serviços-bancários-e-de-crédito-empresas_II.9,40_IIND200048.htm |Desconhecida/não se aplica|https://www.glassdoor.com.br/Vis%C3%A3o-geral/Trabalhar-na-Banco-Alfa-EI_IE817306.13,23.htm   |3.50 |3.20           |3.20                |3.10          |2.80          |3.80                  |2.70                  |68.00                        |47.00                           |S3      |ALFA       |100.00       |match               |
+|Banco BMG     |445          |232          |704           |277           |http://www.bancobmg.com.br     |São Paulo, Brasil    |1930            |/Explorar/melhores-serviços-bancários-e-de-crédito-empresas_II.9,40_IIND200048.htm |De US$ 1 a US$ 5 milhões  |https://www.glassdoor.com.br/Vis%C3%A3o-geral/Trabalhar-na-Banco-BMG-EI_IE2482923.13,22.htm   |4.10 |3.90           |4.10                |3.70          |3.60          |4.20                  |3.50                  |79.00                        |63.00                           |S3      |BMG        |100.00       |match               |
+|Banco Bradesco|11000        |3300         |19000         |3200          |http://www.bancobradesco.com.br|Osasco, Brasil       |1943            |/Explorar/melhores-serviços-bancários-e-de-crédito-empresas_II.9,40_IIND200048.htm |Mais de US$ 10 bilhões    |https://www.glassdoor.com.br/Vis%C3%A3o-geral/Trabalhar-na-Banco-Bradesco-EI_IE10997.13,27.htm|4.20 |3.80           |3.90                |3.40          |3.40          |4.30                  |3.80                  |81.00                        |66.00                           |S1      |BRADESCO   |100.00       |match               |
++--------------+-------------+-------------+--------------+--------------+-------------------------------+---------------------+----------------+-----------------------------------------------------------------------------------+--------------------------+----------------------------------------------------------------------------------------------+-----+---------------+--------------------+--------------+--------------+----------------------+----------------------+-----------------------------+--------------------------------+--------+-----------+-------------+--------------------+
+only showing top 5 rows
+[OK] Glassdoor match preservado: 34 registros.
+Trusted gravada em: data/trusted/glassdoor_match
+
+================================================================================
+GLASSDOOR MATCH LESS
+================================================================================
+Registros antes: 5
+Registros depois: 5
+Colunas: 25
+
+CNPJ original e normalizado:
++-------------------------------+--------+--------+--------------------------------------------------+-------------+
+|employer_name                  |cnpj    |cnpj_8  |nome                                              |match_percent|
++-------------------------------+--------+--------+--------------------------------------------------+-------------+
+|Apex Group                     |655522  |00655522|APE POUPEX                                        |70.00        |
+|Banco Alfa                     |58160789|58160789|SAFRA                                             |67.00        |
+|China Construction Bank        |7450604 |07450604|CHINA CONSTRUCTION BANK (BRASIL) BANCO MULTIPLO S/|77.00        |
+|Mercedes-Benz Mobility         |60814191|60814191|MERCEDES-BENZ                                     |73.00        |
+|Sumitomo Mitsui Financial Group|60518222|60518222|BANCO SUMITOMO MITSUI BRASIL S.A.                 |65.00        |
++-------------------------------+--------+--------+--------------------------------------------------+-------------+
+
+
+Schema:
+root
+ |-- employer_name: string (nullable = true)
+ |-- reviews_count: long (nullable = true)
+ |-- culture_count: long (nullable = true)
+ |-- salaries_count: long (nullable = true)
+ |-- benefits_count: long (nullable = true)
+ |-- employer_website: string (nullable = true)
+ |-- employer_headquarters: string (nullable = true)
+ |-- employer_founded: integer (nullable = true)
+ |-- employer_industry: string (nullable = true)
+ |-- employer_revenue: string (nullable = true)
+ |-- url: string (nullable = true)
+ |-- geral: decimal(10,2) (nullable = true)
+ |-- cultura_valores: decimal(10,2) (nullable = true)
+ |-- diversidade_inclusao: decimal(10,2) (nullable = true)
+ |-- qualidade_vida: decimal(10,2) (nullable = true)
+ |-- alta_lideranca: decimal(10,2) (nullable = true)
+ |-- remuneracao_beneficios: decimal(10,2) (nullable = true)
+ |-- oportunidades_carreira: decimal(10,2) (nullable = true)
+ |-- recomendam_outras_pessoas_pct: decimal(10,2) (nullable = true)
+ |-- perspectiva_positiva_empresa_pct: decimal(10,2) (nullable = true)
+ |-- cnpj: string (nullable = true)
+ |-- nome: string (nullable = true)
+ |-- match_percent: decimal(10,2) (nullable = true)
+ |-- cnpj_8: string (nullable = true)
+ |-- tipo_correspondencia: string (nullable = false)
+
+[OK] Glassdoor match_less preservado: 5 registros.
+Trusted gravada em: data/trusted/glassdoor_match_less
+
+================================================================================
+TRUSTED GLASSDOOR CONCLUIDA COM SUCESSO.
+================================================================================

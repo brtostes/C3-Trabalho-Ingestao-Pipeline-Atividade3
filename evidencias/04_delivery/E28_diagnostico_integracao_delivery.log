@@ -1,0 +1,132 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/08/15 23:00:27 WARN Utils: Your hostname, DESKTOP-8FOB866, resolves to a loopback address: 127.0.1.1; using 10.255.255.254 instead (on interface lo)
+26/08/15 23:00:27 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/08/15 23:00:27 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[Stage 15:>                                                         (0 + 1) / 1]                                                                                ================================================================================
+ATIVIDADE 3 - DIAGNOSTICO DA INTEGRACAO DA DELIVERY
+================================================================================
+
+================================================================================
+1. DUPLICIDADES DE CNPJ_8 NO ENQUADRAMENTO
+================================================================================
+Quantidade de chaves cnpj_8 com mais de uma linha: 15
+
+Exemplos:
++--------+--------+--------+--------------------------------------------------+
+|cnpj_8  |cnpj    |segmento|nome                                              |
++--------+--------+--------+--------------------------------------------------+
+|00000000|0       |S1      |BANCO DO BRASIL - PRUDENCIAL                      |
+|00000000|0       |S1      |BANCO DO BRASIL S/A                               |
+|00000208|208     |S3      |BRB - PRUDENCIAL                                  |
+|00000208|208     |S3      |BRB BANCO DE BRASILIA S/A                         |
+|07450604|7450604 |S3      |CCB - PRUDENCIAL                                  |
+|07450604|7450604 |S3      |CHINA CONSTRUCTION BANK (BRASIL) BANCO MULTIPLO S/|
+|17184037|17184037|S3      |BANCO MERCANTIL DO BRASIL S.A                     |
+|17184037|17184037|S3      |MERCANTIL DO BRASIL - PRUDENCIAL                  |
+|28127603|28127603|S3      |BANESTES - PRUDENCIAL                             |
+|28127603|28127603|S3      |BANESTES S/A BANCO DO ESTADO DO ESPIRITO SANTO    |
+|58160789|58160789|S2      |BANCO SAFRA S/A                                   |
+|58160789|58160789|S2      |SAFRA - PRUDENCIAL                                |
+|58616418|58616418|S3      |BANCO FIBRA S.A. - PRUDENCIAL                     |
+|58616418|58616418|S3      |BANCO FIBRA SA                                    |
+|59109165|59109165|S3      |BANCO VOLKSWAGEN                                  |
+|59109165|59109165|S3      |VOLKSWAGEN - PRUDENCIAL                           |
+|59274605|59274605|S3      |BANCO GMAC S.A.                                   |
+|59274605|59274605|S3      |GMAC - PRUDENCIAL                                 |
+|59285411|59285411|S3      |BANCO PAN S.A                                     |
+|59285411|59285411|S3      |PAN                                               |
+|59588111|59588111|S2      |BANCO VOTORANTIM S.A.                             |
+|59588111|59588111|S2      |VOTORANTIM - PRUDENCIAL                           |
+|60872504|60872504|S1      |ITAU - PRUDENCIAL                                 |
+|60872504|60872504|S1      |ITAU UNIBANCO HOLDING S.A.                        |
+|90400888|90400888|S1      |BANCO SANTANDER (BRASIL) S/A                      |
+|90400888|90400888|S1      |SANTANDER - PRUDENCIAL                            |
+|92702067|92702067|S2      |BANCO DO ESTADO DO RIO GRANDE DO SUL SA           |
+|92702067|92702067|S2      |BANRISUL - PRUDENCIAL                             |
+|92894922|92894922|S3      |BANCO ORIGINAL S/A                                |
+|92894922|92894922|S3      |ORIGINAL - PRUDENCIAL                             |
++--------+--------+--------+--------------------------------------------------+
+
+Linhas duplicadas contendo 'PRUDENCIAL': 14
+
+================================================================================
+2. DUPLICIDADES NA GLASSDOOR MATCH
+================================================================================
+Chaves duplicadas:
++---------------+-------------------+---------------+--------+-------------+-----+
+|nome_norm      |employer_name      |nome           |segmento|match_percent|geral|
++---------------+-------------------+---------------+--------+-------------+-----+
+|JP MORGAN CHASE|JPMorgan Chase & Co|JP MORGAN CHASE|S3      |88.00        |4.00 |
+|JP MORGAN CHASE|J.P. Morgan        |JP MORGAN CHASE|S3      |75.00        |4.10 |
+|VOTORANTIM     |Banco Votorantim   |VOTORANTIM     |S2      |100.00       |4.40 |
+|VOTORANTIM     |Votorantim         |VOTORANTIM     |S2      |100.00       |4.10 |
++---------------+-------------------+---------------+--------+-------------+-----+
+
+
+================================================================================
+3. GLASSDOOR MATCH x RECLAMACOES POR NOME
+================================================================================
+Nomes distintos na Glassdoor match: 32
+Nomes Glassdoor encontrados nas reclamacoes: 21
+
+Nomes encontrados:
++--------------------------------+
+|nome_norm                       |
++--------------------------------+
+|ALFA                            |
+|BANCO DO NORDESTE DO BRASIL S.A.|
+|BANCO FIBRA S.A.                |
+|BANRISUL                        |
+|BMG                             |
+|BNP PARIBAS                     |
+|BOFA MERRILL LYNCH              |
+|BRADESCO                        |
+|BTG PACTUAL                     |
+|CITIBANK                        |
+|CREDIT SUISSE                   |
+|ITAU                            |
+|JP MORGAN CHASE                 |
+|MERCEDES-BENZ                   |
+|ORIGINAL                        |
+|PAN                             |
+|PINE                            |
+|SANTANDER                       |
+|SICREDI                         |
+|SOCIETE GENERALE                |
+|VOTORANTIM                      |
++--------------------------------+
+
+Linhas de reclamacoes alcançadas por nome: 119
+
+================================================================================
+4. GLASSDOOR MATCH_LESS x RECLAMACOES POR CNPJ_8
+================================================================================
++-------------------------------+--------+--------+--------------------------------------------------+-------------+-------------------------------------+----+---------+
+|employer_name                  |cnpj    |cnpj_8  |nome_glassdoor                                    |match_percent|instituicao_financeira               |ano |trimestre|
++-------------------------------+--------+--------+--------------------------------------------------+-------------+-------------------------------------+----+---------+
+|Apex Group                     |655522  |00655522|APE POUPEX                                        |70.00        |NULL                                 |NULL|NULL     |
+|Banco Alfa                     |58160789|58160789|SAFRA                                             |67.00        |NULL                                 |NULL|NULL     |
+|China Construction Bank        |7450604 |07450604|CHINA CONSTRUCTION BANK (BRASIL) BANCO MULTIPLO S/|77.00        |NULL                                 |NULL|NULL     |
+|Mercedes-Benz Mobility         |60814191|60814191|MERCEDES-BENZ                                     |73.00        |NULL                                 |NULL|NULL     |
+|Sumitomo Mitsui Financial Group|60518222|60518222|BANCO SUMITOMO MITSUI BRASIL S.A.                 |65.00        |BANCO SUMITOMO MITSUI BRASILEIRO S.A.|2021|2º       |
+|Sumitomo Mitsui Financial Group|60518222|60518222|BANCO SUMITOMO MITSUI BRASIL S.A.                 |65.00        |BANCO SUMITOMO MITSUI BRASILEIRO S.A.|2022|4º       |
++-------------------------------+--------+--------+--------------------------------------------------+-------------+-------------------------------------+----+---------+
+
+CNPJs distintos de match_less encontrados nas reclamacoes: 1
+Linhas de reclamacoes alcançadas por match_less: 2
+
+================================================================================
+RESUMO DO DIAGNOSTICO
+================================================================================
+CNPJs duplicados no enquadramento: 15
+Nomes distintos Glassdoor match: 32
+Nomes Glassdoor encontrados nas reclamacoes: 21
+Linhas de reclamacoes alcançadas por nome: 119
+CNPJs match_less encontrados nas reclamacoes: 1
+Linhas de reclamacoes alcançadas por match_less: 2
+
+DIAGNOSTICO DA INTEGRACAO CONCLUIDO.

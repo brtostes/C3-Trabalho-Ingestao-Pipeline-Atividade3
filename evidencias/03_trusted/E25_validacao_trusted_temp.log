@@ -1,0 +1,41 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/08/15 22:56:41 WARN Utils: Your hostname, DESKTOP-8FOB866, resolves to a loopback address: 127.0.1.1; using 10.255.255.254 instead (on interface lo)
+26/08/15 22:56:41 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/08/15 22:56:42 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+================================================================================
+ATIVIDADE 3 - VALIDACAO DAS TRUSTED TEMPORARIAS
+================================================================================
+
+RECLAMACOES
+--------------------------------------------------------------------------------
+Original: 918
+Temporaria: 918
+Colunas original: 16
+Colunas temporaria: 17
+[OK] cnpj_8 existe na temporaria.
+cnpj_8 preenchidos: 437
+cnpj_8 nulos: 481
+
+ENQUADRAMENTO
+--------------------------------------------------------------------------------
+Original: 1474
+Temporaria: 1474
+Colunas original: 3
+Colunas temporaria: 4
+[OK] cnpj_8 existe na temporaria.
+
+Correspondencias distintas: 72
+
+================================================================================
+RESULTADO
+================================================================================
+[OK] Reclamações preservadas.
+[OK] Enquadramento preservado.
+[OK] 437 registros de reclamacoes possuem cnpj_8.
+[OK] 72 chaves distintas possuem correspondencia.
+
+VALIDACAO DAS TRUSTED TEMPORARIAS CONCLUIDA.

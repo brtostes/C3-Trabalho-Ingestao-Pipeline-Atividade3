@@ -1,0 +1,21 @@
+﻿Listagem de caminhos de pasta para o volume HDD 500 GB
+O n·mero de sÚrie do volume Ú 0000008C BA01:09C4
+D:.
++---data
+ª   +---delivery
+ª   +---input
+ª   +---raw
+ª   +---trusted
++---drivers
++---evidencias
+ª   +---01_ambiente
+ª   ª       E01_estrutura_projeto.txt
+ª   ª       
+ª   +---02_ingestao_raw
+ª   +---03_trusted
+ª   +---04_delivery
+ª   +---05_postgresql
+ª   +---06_validacao
++---logs
++---relatorio
++---src

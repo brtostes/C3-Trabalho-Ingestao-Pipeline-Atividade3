@@ -1,0 +1,119 @@
+============================================================
+ATIVIDADE 3 - INVENTARIO FINAL
+============================================================
+
+=== SCRIPTS PYTHON ===
+01_teste_spark.py
+02_teste_parquet.py
+03_ingestao_raw.py
+04_validacao_raw.py
+05_trusted_reclamacoes.py
+06_validacao_trusted_reclamacoes.py
+07_trusted_enquadramento.py
+08_diagnostico_chave_cnpj.py
+09_padronizacao_chave_cnpj.py
+10_validacao_trusted_temp.py
+11_trusted_glassdoor.py
+12_validacao_trusted_glassdoor.py
+13_diagnostico_integracao_delivery.py
+14_dimensoes_canonicas_delivery.py
+15_delivery_integrada.py
+16_diagnostico_caracteres.py
+17_diagnostico_encoding_enquadramento.py
+18_localizar_enquadramento_integro.py
+19_teste_jdbc_postgresql.py
+20_carga_delivery_postgresql.py
+
+=== EVIDENCIAS ===
+evidencias/01_ambiente/E01_estrutura_projeto.txt
+evidencias/01_ambiente/E02_diretorios_criados.txt
+evidencias/01_ambiente/E03_estrutura_projeto.png
+evidencias/01_ambiente/E04_diagnostico_ambiente.txt
+evidencias/01_ambiente/E05_postgresql_windows.txt
+evidencias/01_ambiente/E06_dependencias_python.txt
+evidencias/01_ambiente/E07_teste_spark_sucesso.log
+evidencias/01_ambiente/E09_teste_parquet_sucesso.log
+evidencias/01_ambiente/E10_arquivos_parquet_gerados.txt
+evidencias/02_ingestao_raw/E11_inventario_bases_origem.txt
+evidencias/02_ingestao_raw/E12_sha256_origem.txt
+evidencias/02_ingestao_raw/E13_sha256_destino.txt
+evidencias/02_ingestao_raw/E14_validacao_bases_input.txt
+evidencias/02_ingestao_raw/E15_execucao_ingestao_raw.log
+evidencias/02_ingestao_raw/E16_validacao_raw.log
+evidencias/03_trusted/E17_execucao_trusted_reclamacoes.log
+evidencias/03_trusted/E18_execucao_trusted_reclamacoes_corrigida.log
+evidencias/03_trusted/E19_execucao_trusted_reclamacoes_sucesso.log
+evidencias/03_trusted/E20_execucao_trusted_reclamacoes_corrigida.log
+evidencias/03_trusted/E21_validacao_trusted_reclamacoes.log
+evidencias/03_trusted/E22_execucao_trusted_enquadramento.log
+evidencias/03_trusted/E23_diagnostico_chave_cnpj.log
+evidencias/03_trusted/E24_padronizacao_chave_cnpj.log
+evidencias/03_trusted/E25_validacao_trusted_temp.log
+evidencias/03_trusted/E26_execucao_trusted_glassdoor.log
+evidencias/03_trusted/E27_validacao_trusted_glassdoor.log
+evidencias/04_delivery/E28_diagnostico_integracao_delivery.log
+evidencias/04_delivery/E29_dimensoes_canonicas_delivery.log
+evidencias/04_delivery/E30_execucao_delivery_integrada.log
+evidencias/04_delivery/E31_diagnostico_caracteres.log
+evidencias/04_delivery/E32_diagnostico_encoding_enquadramento.log
+evidencias/04_delivery/E33_busca_enquadramento_integro.log
+evidencias/05_postgresql/E34_conectividade_postgresql.log
+evidencias/05_postgresql/E35_driver_jdbc_sha256.txt
+evidencias/05_postgresql/E36_teste_jdbc_postgresql.log
+evidencias/05_postgresql/E37_carga_delivery_postgresql.log
+evidencias/05_postgresql/E38_validacao_independente_postgresql.log
+evidencias/06_validacao/E39_inventario_final.log
+
+=== RAW ===
+2021_tri_01
+2021_tri_02
+2021_tri_03
+2021_tri_04
+2022_tri_01
+2022_tri_03
+2022_tri_04
+enquadramento
+glassdoor_consolidado_join_match_less_v2
+glassdoor_consolidado_join_match_v2
+
+=== TRUSTED ===
+enquadramento
+glassdoor_match
+glassdoor_match_less
+reclamacoes
+
+=== DELIVERY ===
+reclamacoes_integradas
+staging_enquadramento_canonico
+staging_glassdoor_match_canonico
+staging_glassdoor_match_less
+
+=== DRIVER JDBC ===
+total 1.2M
+-rwxrwxrwx 1 breno_tostes breno_tostes 1.2M Jul  6 16:08 postgresql-42.7.13.jar
+
+=== SHA-256 DOS SCRIPTS ===
+795233c741b6848781715ed60bd91741a456d199fa61698e94fa7828ac229cbb  src/01_teste_spark.py
+bdc3128366f714a26126722fb0b4bbbf12997656b527cb14a958d3788643e024  src/02_teste_parquet.py
+13ba1d917c9383adac9c5e9c9b4723a35443deee0b7afc4e88c1416d9686fa00  src/03_ingestao_raw.py
+4dbfaf02833c18df34ca8e2fe74c9eca4e5067301bd38d97b8ddc78447edfe01  src/04_validacao_raw.py
+8352a67769eb7ba8908427479a458ea50bc9d611c76709d5734ce447b7e9232d  src/05_trusted_reclamacoes.py
+a0dbbe9ebcd39b892e0ddec75f4e513771812cd643e1c1fce86141ba493ed40a  src/06_validacao_trusted_reclamacoes.py
+86b7c54e94f9143616b86b65f87f2528d4108f513e776b9c40b66c172481c023  src/07_trusted_enquadramento.py
+a119c13704f3e8efeeb9023d8f0e7a8006c01eafda56e53737eee1e91b606c84  src/08_diagnostico_chave_cnpj.py
+da5a7ee390d80d4960fb7b85b68e826414a6170cdcc3243bbed2ca993ff02215  src/09_padronizacao_chave_cnpj.py
+45724df6bbdd981b4ef68e3b667efe1c7297374a1ea1b2458a33debcaa52ea56  src/10_validacao_trusted_temp.py
+6e7c87a573b2e39a5bf3e41ca35acf94cec6febe2a86386e4cbe9c1c26bc5c97  src/11_trusted_glassdoor.py
+3cc15c4ce30007866a559a5f42e9f5e2e56520399272c23f3bbca35360ef3ebe  src/12_validacao_trusted_glassdoor.py
+a6ccdbe7e50db6da15857431e7833004c4a007aba7fa3d7a60a3320e5be541f1  src/13_diagnostico_integracao_delivery.py
+7ff934294c44fa13938c3a2c833b66210cbed3d6b0a77425f2bd6d317e1f7c5a  src/14_dimensoes_canonicas_delivery.py
+871855240b43cdaa01d118a646cccb03458dae716518ceb381540f6c51612708  src/15_delivery_integrada.py
+e9001ef1d0fca1dcbbbf87c6dd5a114a83be87d65711d5fb890ef4a071269c5f  src/16_diagnostico_caracteres.py
+79348b66f8857bced58355d9cb8f3cfa0bfcb130019169d4fb17c881cc584b3a  src/17_diagnostico_encoding_enquadramento.py
+9183bfbfda520c7a3b63dc6b0aeec715822873957d15f93a2b2af4b97587a865  src/18_localizar_enquadramento_integro.py
+5a718d7309ab305c72da50daac4bfa18e1554237d2690001b58232f80dfeb71e  src/19_teste_jdbc_postgresql.py
+c107a07cabe23cef516014e6df3f6a94ecc6adef8cfb109ea066481f8e5a63cb  src/20_carga_delivery_postgresql.py
+
+============================================================
+INVENTARIO CONCLUIDO
+============================================================

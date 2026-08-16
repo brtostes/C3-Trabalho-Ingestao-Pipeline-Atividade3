@@ -1,0 +1,66 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/08/15 23:01:59 WARN Utils: Your hostname, DESKTOP-8FOB866, resolves to a loopback address: 127.0.1.1; using 10.255.255.254 instead (on interface lo)
+26/08/15 23:01:59 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/08/15 23:02:00 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[Stage 4:>                                                          (0 + 1) / 1]                                                                                ================================================================================
+ATIVIDADE 3 - DIMENSOES CANONICAS PARA DELIVERY
+================================================================================
+
+================================================================================
+1. ENQUADRAMENTO CANONICO
+================================================================================
+Registros recebidos: 1474
+Registros canonicos: 1459
+CNPJs duplicados apos canonicalizacao: 0
+
+Exemplos de CNPJs anteriormente duplicados:
++--------+--------+--------------------------------------------------+
+|cnpj_8  |segmento|nome                                              |
++--------+--------+--------------------------------------------------+
+|00000000|S1      |BANCO DO BRASIL S/A                               |
+|07450604|S3      |CHINA CONSTRUCTION BANK (BRASIL) BANCO MULTIPLO S/|
+|58160789|S2      |BANCO SAFRA S/A                                   |
+|59285411|S3      |BANCO PAN S.A                                     |
+|59588111|S2      |BANCO VOTORANTIM S.A.                             |
+|60872504|S1      |ITAU UNIBANCO HOLDING S.A.                        |
+|90400888|S1      |BANCO SANTANDER (BRASIL) S/A                      |
++--------+--------+--------------------------------------------------+
+
+
+================================================================================
+2. GLASSDOOR MATCH CANONICO
+================================================================================
+Registros recebidos: 34
+Registros canonicos: 32
+Nomes duplicados apos canonicalizacao: 0
+
+Selecao para nomes anteriormente duplicados:
++---------------+-------------------+--------+-------------+-----+-------------+
+|nome_norm      |employer_name      |segmento|match_percent|geral|reviews_count|
++---------------+-------------------+--------+-------------+-----+-------------+
+|JP MORGAN CHASE|JPMorgan Chase & Co|S3      |88.00        |4.00 |22000        |
+|VOTORANTIM     |Banco Votorantim   |S2      |100.00       |4.40 |1400         |
++---------------+-------------------+--------+-------------+-----+-------------+
+
+
+================================================================================
+3. GLASSDOOR MATCH_LESS
+================================================================================
+Registros: 5
+CNPJs duplicados: 0
+
+================================================================================
+RESULTADO DA CANONICALIZACAO
+================================================================================
+[OK] Enquadramento canonico = 1459 chaves.
+[OK] Nenhuma duplicidade de cnpj_8 no enquadramento canonico.
+[OK] Glassdoor canonico = 32 nomes distintos.
+[OK] Nenhuma duplicidade de nome_norm na Glassdoor canonica.
+[OK] Glassdoor match_less possui 5 CNPJs sem duplicidade.
+
+Dimensoes de staging gravadas.
+CANONICALIZACAO PARA DELIVERY CONCLUIDA COM SUCESSO.

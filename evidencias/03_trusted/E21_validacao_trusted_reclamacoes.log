@@ -1,0 +1,73 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/08/15 22:52:40 WARN Utils: Your hostname, DESKTOP-8FOB866, resolves to a loopback address: 127.0.1.1; using 10.255.255.254 instead (on interface lo)
+26/08/15 22:52:40 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/08/15 22:52:41 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+================================================================================
+ATIVIDADE 3 - VALIDACAO DA TRUSTED DE RECLAMACOES
+================================================================================
+
+Total de registros: 918
+Total de colunas: 16
+
+REGISTROS POR ARQUIVO DE ORIGEM
+--------------------------------------------------------------------------------
++--------------+-----+
+|arquivo_origem|count|
++--------------+-----+
+|2021_tri_01   |105  |
+|2021_tri_02   |111  |
+|2021_tri_03   |113  |
+|2021_tri_04   |135  |
+|2022_tri_01   |137  |
+|2022_tri_03   |163  |
+|2022_tri_04   |154  |
++--------------+-----+
+
+
+VALIDACAO DOS INDICES COM SEPARADOR DE MILHAR
+--------------------------------------------------------------------------------
++----+---------+---------------------------------------------------+--------+--------------+
+|ano |trimestre|instituicao_financeira                             |indice  |arquivo_origem|
++----+---------+---------------------------------------------------+--------+--------------+
+|2021|3º       |MASTER (conglomerado)                              |2055.01 |2021_tri_03   |
+|2021|3º       |PARATI - CREDITO, FINANCIAMENTO E INVESTIMENTO S.A.|14015.05|2021_tri_03   |
+|2021|4º       |PARATI - CREDITO, FINANCIAMENTO E INVESTIMENTO S.A.|16699.13|2021_tri_04   |
++----+---------+---------------------------------------------------+--------+--------------+
+
+Quantidade de registros especiais encontrados: 3
+
+ANOS ENCONTRADOS
++----+
+| ano|
++----+
+|2021|
+|2022|
++----+
+
+
+ANO E TRIMESTRE
++----+---------+-------------+
+| ano|trimestre|trimestre_num|
++----+---------+-------------+
+|2021|       1º|            1|
+|2021|       2º|            2|
+|2021|       3º|            3|
+|2021|       4º|            4|
+|2022|       1º|            1|
+|2022|       3º|            3|
+|2022|       4º|            4|
++----+---------+-------------+
+
+
+================================================================================
+RESULTADO DA VALIDACAO
+================================================================================
+[OK] Total de registros = 918.
+[OK] Coluna _c14 ausente na Trusted.
+[OK] Os 3 indices com separador de milhar foram convertidos corretamente.
+
+VALIDACAO DA TRUSTED DE RECLAMACOES CONCLUIDA.

@@ -1,0 +1,71 @@
+WARNING: Using incubator modules: jdk.incubator.vector
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+26/08/15 22:59:04 WARN Utils: Your hostname, DESKTOP-8FOB866, resolves to a loopback address: 127.0.1.1; using 10.255.255.254 instead (on interface lo)
+26/08/15 22:59:04 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/08/15 22:59:05 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+================================================================================
+ATIVIDADE 3 - VALIDACAO DAS TRUSTED GLASSDOOR
+================================================================================
+
+QUANTIDADES
+--------------------------------------------------------------------------------
+Glassdoor match: 34
+Glassdoor match_less: 5
+
+DUPLICIDADES DE NOME - MATCH
+--------------------------------------------------------------------------------
++---------------+-----+
+|nome           |count|
++---------------+-----+
+|JP MORGAN CHASE|2    |
+|VOTORANTIM     |2    |
++---------------+-----+
+
+Quantidade de nomes duplicados: 2
+
+Nomes distintos da Glassdoor match encontrados no enquadramento: 3
+
+MATCH_LESS x ENQUADRAMENTO
+--------------------------------------------------------------------------------
++-------------------------------+--------------+--------+--------------------------------------------------+-------------+--------------------------------------------------+----------------------+
+|employer_name                  |cnpj_glassdoor|cnpj_8  |nome_glassdoor                                    |match_percent|nome_enquadramento                                |segmento_enquadramento|
++-------------------------------+--------------+--------+--------------------------------------------------+-------------+--------------------------------------------------+----------------------+
+|Apex Group                     |655522        |00655522|APE POUPEX                                        |70.00        |APE POUPEX                                        |S3                    |
+|Banco Alfa                     |58160789      |58160789|SAFRA                                             |67.00        |BANCO SAFRA S/A                                   |S2                    |
+|Banco Alfa                     |58160789      |58160789|SAFRA                                             |67.00        |SAFRA - PRUDENCIAL                                |S2                    |
+|China Construction Bank        |7450604       |07450604|CHINA CONSTRUCTION BANK (BRASIL) BANCO MULTIPLO S/|77.00        |CHINA CONSTRUCTION BANK (BRASIL) BANCO MULTIPLO S/|S3                    |
+|China Construction Bank        |7450604       |07450604|CHINA CONSTRUCTION BANK (BRASIL) BANCO MULTIPLO S/|77.00        |CCB - PRUDENCIAL                                  |S3                    |
+|Mercedes-Benz Mobility         |60814191      |60814191|MERCEDES-BENZ                                     |73.00        |MERCEDES-BENZ - PRUDENCIAL                        |S3                    |
+|Sumitomo Mitsui Financial Group|60518222      |60518222|BANCO SUMITOMO MITSUI BRASIL S.A.                 |65.00        |BANCO SUMITOMO MITSUI BRASIL S.A. - PRUDENCIAL    |S3                    |
++-------------------------------+--------------+--------+--------------------------------------------------+-------------+--------------------------------------------------+----------------------+
+
+Registros match_less encontrados pelo CNPJ: 7
+
+INTERVALOS DE MATCH_PERCENT
+--------------------------------------------------------------------------------
++---------+---------+
+|min_match|max_match|
++---------+---------+
+|    65.00|   100.00|
++---------+---------+
+
++--------------+--------------+
+|min_match_less|max_match_less|
++--------------+--------------+
+|         65.00|         77.00|
++--------------+--------------+
+
+
+================================================================================
+RESULTADO DA VALIDACAO
+================================================================================
+[OK] Glassdoor match = 34 registros.
+[OK] Glassdoor match_less = 5 registros.
+[ATENCAO] Existem 2 nomes duplicados na match.
+[INFO] Correspondencias por nome match x enquadramento = 3.
+[INFO] Correspondencias por CNPJ match_less x enquadramento = 7.
+
+VALIDACAO DAS TRUSTED GLASSDOOR CONCLUIDA.
