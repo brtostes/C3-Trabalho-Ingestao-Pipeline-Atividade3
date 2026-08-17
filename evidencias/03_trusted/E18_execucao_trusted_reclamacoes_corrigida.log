@@ -1,4 +1,0 @@
-  File "/mnt/d/GitHub/C3-Trabalho-Ingestao-Pipeline/Atividade_3–Ingestao_ETL_Python_Spark/./src/05_trusted_reclamacoes.py", line 173
-    )
-    ^
-SyntaxError: unmatched ')'

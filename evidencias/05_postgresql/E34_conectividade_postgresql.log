@@ -1,6 +1,0 @@
-Host Windows identificado pelo WSL:
-default via 172.17.80.1 dev eth0 proto kernel 
-
-WINDOWS_HOST=172.17.80.1
-
-[OK] PostgreSQL acessivel em 172.17.80.1:5432
