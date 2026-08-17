@@ -1,0 +1,200 @@
+====================================================================================================
+ATIVIDADE 3 - INVENTARIO FINAL DA ENTREGA
+====================================================================================================
+
+1. DIRETORIO DO PROJETO
+D:\GitHub\C3-Trabalho-Ingestao-Pipeline\Atividade_3-Ingestao_ETL_Python_Spark
+
+2. ARQUIVOS DE CODIGO-FONTE
+
+Name                                      Length
+----                                      ------
+01_teste_spark.py                            825
+02_inspecionar_arquivos.py                  1236
+03_validar_leitura_estruturada.py           2431
+04_testar_encoding_reclamacoes.py           1753
+05_criar_raw.py                             3578
+06_validar_raw.py                           3201
+07_criar_trusted_reclamacoes.py             7350
+08_diagnosticar_indice_reclamacoes.py       4561
+09_criar_trusted_enquadramento.py           3404
+10_criar_trusted_glassdoor.py               5965
+11_diagnosticar_chaves_integracao.py       10863
+12_diagnosticar_estrategia_delivery.py     10889
+13_criar_delivery.py                       13869
+14_testar_driver_postgresql.py               655
+15_testar_conexao_jdbc.py                   1624
+16_gravar_delivery_postgresql.py            4657
+17_validacao_final_pipeline.py             11338
+18_diagnosticar_unicode.py                  3499
+19_diagnosticar_encoding_enquadramento.py   1860
+
+
+
+
+3. EVIDENCIAS DISPONIVEIS
+evidencias\01_ambiente\docker_compose_version.txt
+evidencias\01_ambiente\docker_version.txt
+evidencias\02_docker\E03_docker_compose_ps.txt
+evidencias\02_docker\E06_docker-compose_postgres.yml
+evidencias\02_docker\E07_docker-compose_com_erro.yml
+evidencias\03_spark\E07_spark_version.txt
+evidencias\03_spark\E08_teste_spark.log
+evidencias\04_postgresql\E04_postgresql_version.txt
+evidencias\04_postgresql\E05_postgresql_conexao.txt
+evidencias\04_postgresql\E06_postgresql_healthy.png
+evidencias\04_postgresql\E25_teste_driver_jdbc.log
+evidencias\04_postgresql\E26_teste_driver_jdbc_corrigido.log
+evidencias\04_postgresql\E27_teste_conexao_jdbc_real.log
+evidencias\05_raw\E09_arquivos_entrada.txt
+evidencias\05_raw\E09_manifesto_arquivos_entrada.csv
+evidencias\05_raw\E09_manifesto_arquivos_entrada.txt
+evidencias\05_raw\E10_verificacao_integridade_copia.csv
+evidencias\05_raw\E11_inspecao_arquivos.log
+evidencias\05_raw\E12_validacao_leitura_estruturada.log
+evidencias\05_raw\E13_teste_encoding_reclamacoes.log
+evidencias\05_raw\E14_criacao_raw.log
+evidencias\05_raw\E15_validacao_raw.log
+evidencias\06_trusted\E16_criacao_trusted_reclamacoes.log
+evidencias\06_trusted\E17_diagnostico_indice.log
+evidencias\06_trusted\E18_criacao_trusted_reclamacoes_corrigida.log
+evidencias\06_trusted\E19_criacao_trusted_enquadramento.log
+evidencias\06_trusted\E20_criacao_trusted_glassdoor.log
+evidencias\07_delivery\E21_diagnostico_chaves_integracao.log
+evidencias\07_delivery\E22_diagnostico_estrategia_delivery.log
+evidencias\07_delivery\E23_criacao_delivery_parquet.log
+evidencias\07_delivery\E24_criacao_delivery_parquet_corrigida.log
+evidencias\07_delivery\E28_gravacao_delivery_postgresql.log
+evidencias\08_validacao\E29_validacao_final_pipeline.log
+evidencias\08_validacao\E30_diagnostico_unicode.log
+evidencias\08_validacao\E31_diagnostico_encoding_enquadramento.log
+evidencias\08_validacao\E32_validacao_final_pipeline_corrigida.log
+evidencias\08_validacao\E33_tabelas_finais_postgresql.log
+evidencias\09_entrega\E33_tabelas_finais_postgresql.log
+evidencias\09_entrega\E34_contagem_final_postgresql.log
+evidencias\09_entrega\E35_inventario_final.txt
+
+4. CAMADA RAW
+data\raw\enquadramento\enquadramento_inicial\part-00000-c3e55280-81af-4f50-9ad6-b679cbfe1930-c000.snappy.parquet
+data\raw\enquadramento\enquadramento_inicial\_SUCCESS
+data\raw\glassdoor\match\part-00000-1f8f6d27-3fbf-4cfa-b1b2-b1e699d4135a-c000.snappy.parquet
+data\raw\glassdoor\match\_SUCCESS
+data\raw\glassdoor\match_less\part-00000-568ebc21-b20c-4419-b4ec-577df45b41a0-c000.snappy.parquet
+data\raw\glassdoor\match_less\_SUCCESS
+data\raw\reclamacoes\2021_tri_01\part-00000-e52a5834-fc02-48a5-8fd6-525bb798d01d-c000.snappy.parquet
+data\raw\reclamacoes\2021_tri_01\_SUCCESS
+data\raw\reclamacoes\2021_tri_02\part-00000-5b7894a2-1cf8-487b-b71d-729cf28958da-c000.snappy.parquet
+data\raw\reclamacoes\2021_tri_02\_SUCCESS
+data\raw\reclamacoes\2021_tri_03\part-00000-c2ea9caa-86d3-4a27-b3f1-2579bb1a8fe9-c000.snappy.parquet
+data\raw\reclamacoes\2021_tri_03\_SUCCESS
+data\raw\reclamacoes\2021_tri_04\part-00000-0393b692-3426-4e51-9bea-880e878f7d43-c000.snappy.parquet
+data\raw\reclamacoes\2021_tri_04\_SUCCESS
+data\raw\reclamacoes\2022_tri_01\part-00000-9ab5e05f-fe02-4f59-814e-fa2968b59d00-c000.snappy.parquet
+data\raw\reclamacoes\2022_tri_01\_SUCCESS
+data\raw\reclamacoes\2022_tri_03\part-00000-f9ea8eeb-8b88-410c-a4ed-3ff0a03f3e64-c000.snappy.parquet
+data\raw\reclamacoes\2022_tri_03\_SUCCESS
+data\raw\reclamacoes\2022_tri_04\part-00000-a1ae36b4-0db0-43f5-9db2-cbc8e6005498-c000.snappy.parquet
+data\raw\reclamacoes\2022_tri_04\_SUCCESS
+
+5. CAMADA TRUSTED
+data\trusted\enquadramento\part-00000-fde68785-af49-4215-948d-e8f7054f2a7e-c000.snappy.parquet
+data\trusted\enquadramento\_SUCCESS
+data\trusted\glassdoor\match\part-00000-7041cc0a-053f-4d09-ac46-4ce38c106835-c000.snappy.parquet
+data\trusted\glassdoor\match\_SUCCESS
+data\trusted\glassdoor\match_less\part-00000-e8921e17-7c34-426b-be60-f45b415b4a7b-c000.snappy.parquet
+data\trusted\glassdoor\match_less\_SUCCESS
+data\trusted\reclamacoes\part-00000-1b0aed47-a6e6-4c17-9438-f3eb3b78969b-c000.snappy.parquet
+data\trusted\reclamacoes\part-00001-1b0aed47-a6e6-4c17-9438-f3eb3b78969b-c000.snappy.parquet
+data\trusted\reclamacoes\part-00002-1b0aed47-a6e6-4c17-9438-f3eb3b78969b-c000.snappy.parquet
+data\trusted\reclamacoes\part-00003-1b0aed47-a6e6-4c17-9438-f3eb3b78969b-c000.snappy.parquet
+data\trusted\reclamacoes\part-00004-1b0aed47-a6e6-4c17-9438-f3eb3b78969b-c000.snappy.parquet
+data\trusted\reclamacoes\part-00005-1b0aed47-a6e6-4c17-9438-f3eb3b78969b-c000.snappy.parquet
+data\trusted\reclamacoes\part-00006-1b0aed47-a6e6-4c17-9438-f3eb3b78969b-c000.snappy.parquet
+data\trusted\reclamacoes\_SUCCESS
+
+6. CAMADA DELIVERY
+data\delivery\reclamacoes_enriquecidas\part-00000-ef3a1706-563f-4f46-9a58-5947c50e3271-c000.snappy.parquet
+data\delivery\reclamacoes_enriquecidas\part-00001-ef3a1706-563f-4f46-9a58-5947c50e3271-c000.snappy.parquet
+data\delivery\reclamacoes_enriquecidas\part-00002-ef3a1706-563f-4f46-9a58-5947c50e3271-c000.snappy.parquet
+data\delivery\reclamacoes_enriquecidas\part-00003-ef3a1706-563f-4f46-9a58-5947c50e3271-c000.snappy.parquet
+data\delivery\reclamacoes_enriquecidas\_SUCCESS
+
+7. STATUS DO GIT
+ D ../Trabalho-02/.env.example
+ D ../Trabalho-02/.gitignore
+ D ../Trabalho-02/Dockerfile
+ D ../Trabalho-02/README.md
+ D ../Trabalho-02/app/01_profile_data.py
+ D ../Trabalho-02/app/01b_validar_leitura.py
+ D ../Trabalho-02/app/02_ingest_raw.py
+ D ../Trabalho-02/app/03_build_trusted.py
+ D ../Trabalho-02/app/04_analisar_chaves.py
+ D ../Trabalho-02/app/05_diagnosticar_relacionamentos.py
+ D ../Trabalho-02/app/06_analisar_conglomerados.py
+ D ../Trabalho-02/app/07_build_delivery.py
+ D ../Trabalho-02/app/08_validacao_final.py
+ D ../Trabalho-02/app/test_connection.py
+ D ../Trabalho-02/compose.yaml
+ D ../Trabalho-02/data/delivery/reclamacoes_enriquecidas.parquet
+ D ../Trabalho-02/data/input/2021_tri_01.csv
+ D ../Trabalho-02/data/input/2021_tri_02.csv
+ D ../Trabalho-02/data/input/2021_tri_03.csv
+ D ../Trabalho-02/data/input/2021_tri_04.csv
+ D ../Trabalho-02/data/input/2022_tri_01.csv
+ D ../Trabalho-02/data/input/2022_tri_03.csv
+ D ../Trabalho-02/data/input/2022_tri_04.csv
+ D ../Trabalho-02/data/input/EnquadramentoInicia_v2.tsv
+ D ../Trabalho-02/data/input/glassdoor_consolidado_join_match_less_v2.csv
+ D ../Trabalho-02/data/input/glassdoor_consolidado_join_match_v2.csv
+ D ../Trabalho-02/data/trusted/enquadramento.parquet
+ D ../Trabalho-02/data/trusted/glassdoor_match.parquet
+ D ../Trabalho-02/data/trusted/glassdoor_match_less.parquet
+ D ../Trabalho-02/data/trusted/reclamacoes.parquet
+ D ../Trabalho-02/logs/analise_chaves_resumo.csv
+ D ../Trabalho-02/logs/classificacao_cnpj_duplicados.csv
+ D ../Trabalho-02/logs/cnpj_duplicados_enquadramento.csv
+ D ../Trabalho-02/logs/cnpj_duplicados_que_afetam_reclamacoes.csv
+ D ../Trabalho-02/logs/cnpj_reclamacoes_sem_enquadramento.csv
+ D ../Trabalho-02/logs/conglomerados_sem_glassdoor.csv
+ D ../Trabalho-02/logs/delivery_resumo.csv
+ D ../Trabalho-02/logs/detalhe_cnpj_duplicados_enquadramento.csv
+ D ../Trabalho-02/logs/diagnostico_cnpj_por_tipo.csv
+ D ../Trabalho-02/logs/diagnostico_conglomerados_glassdoor.csv
+ D ../Trabalho-02/logs/diagnostico_glassdoor_match.csv
+ D ../Trabalho-02/logs/diagnostico_glassdoor_match_less.csv
+ D ../Trabalho-02/logs/glassdoor_less_sem_enquadramento.csv
+ D ../Trabalho-02/logs/glassdoor_match_sem_enquadramento.csv
+ D ../Trabalho-02/logs/perfil_arquivos.csv
+ D ../Trabalho-02/logs/perfil_colunas.csv
+ D ../Trabalho-02/logs/raw_ingestao.csv
+ D ../Trabalho-02/logs/segmento_nome_duplicados_enquadramento.csv
+ D ../Trabalho-02/logs/trusted_resumo.csv
+ D ../Trabalho-02/logs/validacao_final.csv
+ D ../Trabalho-02/requirements.txt
+ D ../docker-compose.yml
+ D ../trabalho-01/Dados/Dados.zip
+ D ../trabalho-01/README.md
+ D ../trabalho-01/Untitled-1.ipynb
+ D ../trabalho-01/docker-compose.yml
+ D ../trabalho-01/etl_local.sqlite
+ D ../trabalho-01/etl_pipeline.py
+ D ../trabalho-01/historico_chat_abnt.md
+ D ../trabalho-01/inspect_inner_zip.py
+ D ../trabalho-01/inspect_zip.py
+ D ../trabalho-01/inspect_zip_contents.py
+ D ../trabalho-01/relatorio.md
+ D ../trabalho-01/temp_inspect.py
+?? "../Atividade_1\342\200\223Ingestao_ETL_Visual/"
+?? "../Atividade_2\342\200\223Ingestao_ETL_Python/"
+?? ./
+
+8. ULTIMO COMMIT LOCAL
+2e3b86e Completa documentacao da Atividade 2
+
+9. CONTAINERS
+NAME                  IMAGE         COMMAND                  SERVICE    CREATED       STATUS                 PORTS
+postgres_atividade3   postgres:17   "docker-entrypoint.sÔÇª"   postgres   3 hours ago   Up 3 hours (healthy)   0.0.0.0:5433->5432/tcp, [::]:5433->5432/tcp
+
+====================================================================================================
+FIM DO INVENTARIO
+====================================================================================================

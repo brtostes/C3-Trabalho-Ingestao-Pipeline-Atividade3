@@ -1,44 +1,42 @@
-from pyspark.sql import SparkSession
+﻿from pyspark.sql import SparkSession
 
+spark = (
+    SparkSession.builder
+    .appName("Atividade3_Teste_Spark")
+    .config("spark.sql.shuffle.partitions", "2")
+    .getOrCreate()
+)
 
-def main():
-    spark = (
-        SparkSession.builder
-        .appName("Atividade3-Teste-Spark")
-        .master("local[*]")
-        .getOrCreate()
-    )
+spark.sparkContext.setLogLevel("WARN")
 
-    spark.sparkContext.setLogLevel("WARN")
+print("=" * 60)
+print("ATIVIDADE 3 - TESTE DO APACHE SPARK")
+print("=" * 60)
 
-    print("=" * 60)
-    print("ATIVIDADE 3 - TESTE DO APACHE SPARK")
-    print("=" * 60)
+print(f"Versao do Spark: {spark.version}")
 
-    print(f"Versao do Spark: {spark.version}")
+dados = [
+    ("RAW", "Dados originais"),
+    ("TRUSTED", "Dados tratados e padronizados"),
+    ("DELIVERY", "Dados finais para consumo"),
+]
 
-    dados = [
-        (1, "Python"),
-        (2, "Spark"),
-        (3, "PostgreSQL")
-    ]
+colunas = ["camada", "descricao"]
 
-    colunas = ["id", "tecnologia"]
+df = spark.createDataFrame(dados, colunas)
 
-    df = spark.createDataFrame(dados, colunas)
+print("\nSchema do DataFrame:")
+df.printSchema()
 
-    print("\nSchema do DataFrame:")
-    df.printSchema()
+print("\nConteudo do DataFrame:")
+df.show(truncate=False)
 
-    print("\nConteudo do DataFrame:")
-    df.show()
+quantidade = df.count()
 
-    print(f"\nQuantidade de registros: {df.count()}")
+print(f"\nQuantidade de registros: {quantidade}")
 
-    print("\nTESTE CONCLUIDO COM SUCESSO.")
+print("=" * 60)
+print("TESTE_SPARK_OK")
+print("=" * 60)
 
-    spark.stop()
-
-
-if __name__ == "__main__":
-    main()
+spark.stop()
