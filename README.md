@@ -4,90 +4,96 @@
 
 Este repositório apresenta o desenvolvimento da **Atividade 3 da disciplina de Ingestão de Dados e Pipeline**, realizada no âmbito da Especialização em Engenharia de Dados & Big Data do PECE/Poli/USP.
 
-O trabalho teve como objetivo implementar um pipeline de ingestão, tratamento, integração e disponibilização de dados utilizando **Python e Apache Spark**, com persistência intermediária em **Parquet** e disponibilização final em **PostgreSQL**.
+O trabalho implementa um pipeline de ingestão, tratamento, integração e disponibilização de dados com **Python e Apache Spark**, estruturado nas camadas **RAW, Trusted e Delivery**, com persistência analítica em **Parquet** e disponibilização da tabela final em **PostgreSQL**.
 
-Todas as operações de tratamento, padronização, integração e enriquecimento dos dados foram realizadas com **Apache Spark**. O PostgreSQL foi utilizado exclusivamente como banco de dados relacional para armazenamento e validação da camada final.
-
----
-
-## 1. Objetivo da atividade
-
-A atividade consistiu na construção de um pipeline de dados organizado em três camadas:
-
-- **RAW**: preservação dos dados ingeridos;
-- **Trusted**: tratamento, tipagem, limpeza e padronização;
-- **Delivery**: integração, enriquecimento e disponibilização dos dados finais.
-
-A camada Delivery foi produzida em formato **Parquet** e também persistida em uma tabela PostgreSQL por meio de conexão JDBC.
+Todas as operações de tratamento, padronização, integração e enriquecimento foram realizadas com a API de DataFrames do Spark. O PostgreSQL foi utilizado como banco relacional para armazenamento e validação da tabela final.
 
 ---
 
-## 2. Tecnologias utilizadas
+## 1. Atendimento aos requisitos da atividade
 
-O ambiente utilizado no desenvolvimento foi composto por:
+| Requisito | Atendimento |
+|---|---|
+| Gerar uma tabela final com os dados tratados e unidos | `data/delivery/tabela_final_reclamacoes` |
+| RAW em formato livre | Parquet adotado neste trabalho |
+| Trusted em Parquet | `data/trusted/` |
+| Delivery em Parquet | `data/delivery/tabela_final_reclamacoes` |
+| Delivery como tabela final em banco relacional | `public.tabela_final_reclamacoes` no PostgreSQL |
+| Processamento com Python + Spark | PySpark/DataFrame API |
+| Tratamento sem SQL | SQL não foi utilizado como mecanismo de transformação |
+
+A materialização final foi validada com **918 registros e 47 colunas** tanto no Parquet quanto no PostgreSQL.
+
+---
+
+## 2. Arquitetura final do pipeline
+
+```text
+Arquivos CSV / TSV
+        |
+        v
+RAW
+formato livre
+(Parquet adotado)
+        |
+        v
+Trusted
+Parquet
+        |
+        v
+Delivery
+Parquet
+        |
+        v
+Tabela final tratada e unificada
+        |
+        +-------------------------------+
+        |                               |
+        v                               v
+Parquet                         PostgreSQL
+                               public.tabela_final_reclamacoes
+```
+
+### Tabela final Parquet
+
+```text
+data/delivery/tabela_final_reclamacoes
+```
+
+### Tabela final PostgreSQL
+
+```text
+Banco  : atividade3
+Schema : public
+Tabela : tabela_final_reclamacoes
+Nome   : public.tabela_final_reclamacoes
+```
+
+---
+
+## 3. Tecnologias utilizadas
 
 - Python;
 - PySpark;
 - Apache Spark 4.1.3;
 - PostgreSQL 17;
 - PostgreSQL JDBC Driver 42.7.13;
-- Docker;
-- Docker Compose;
-- Windows 11;
-- WSL2;
-- Git;
-- GitHub.
+- Docker e Docker Compose;
+- Windows 11 e WSL2;
+- Git e GitHub.
 
-O Spark foi executado em modo local com a seguinte configuração:
+Configuração de execução do Spark:
 
 ```text
 master = local[2]
 driver-memory = 1g
 ```
 
-Essa configuração foi suficiente para o volume de dados processado e adequada aos recursos disponíveis no ambiente acadêmico utilizado.
-
----
-
-## 3. Arquitetura do pipeline
-
-```text
-Arquivos CSV / TSV
-        |
-        v
-+------------------+
-|       RAW        |
-|     Parquet      |
-+------------------+
-        |
-        v
-+------------------+
-|     TRUSTED      |
-| limpeza, tipos,  |
-| padronização     |
-+------------------+
-        |
-        v
-+------------------+
-|     DELIVERY     |
-| integração e     |
-| enriquecimento   |
-+------------------+
-        |
-        +--------------------+
-        |                    |
-        v                    v
-     Parquet             PostgreSQL
-                         public.
-                         delivery_reclamacoes_
-                         enriquecidas
-```
-
 ---
 
 ## 4. Dados de entrada
 
-Foram utilizados dez arquivos de entrada.
+Foram utilizados dez arquivos:
 
 ### Reclamações
 
@@ -101,13 +107,15 @@ Foram utilizados dez arquivos de entrada.
 2022_tri_04.csv
 ```
 
-Não havia registros disponibilizados para o segundo trimestre de 2022 no conjunto de dados utilizado.
+Os sete arquivos totalizam **918 reclamações**. Não havia arquivo de reclamações do segundo trimestre de 2022 no conjunto disponibilizado.
 
-### Enquadramento das instituições
+### Enquadramento
 
 ```text
 EnquadramentoInicia_v2.tsv
 ```
+
+Registros: **1.474**.
 
 ### Glassdoor
 
@@ -116,15 +124,17 @@ glassdoor_consolidado_join_match_v2.csv
 glassdoor_consolidado_join_match_less_v2.csv
 ```
 
-Antes do processamento foram realizadas verificações de quantidade de registros, delimitadores, estrutura dos arquivos e integridade das cópias utilizadas na atividade.
+Registros: **34** e **5**, respectivamente.
+
+Total de registros ingeridos na RAW: **2.431**.
 
 ---
 
 ## 5. Camada RAW
 
-A camada RAW foi utilizada para armazenar os dados ingeridos em formato Parquet antes da aplicação das principais regras de tratamento.
+A RAW preserva os dados ingeridos antes das regras de tratamento. O requisito permitia formato livre; neste trabalho foi adotado **Parquet** também para essa camada, garantindo leitura eficiente e reprodutibilidade.
 
-A quantidade total validada foi:
+A camada contém:
 
 | Conjunto | Registros |
 |---|---:|
@@ -134,29 +144,24 @@ A quantidade total validada foi:
 | Glassdoor Match Less | 5 |
 | **Total** | **2.431** |
 
-Nos arquivos de reclamações foi identificada uma coluna adicional vazia, gerada pela presença de um delimitador ao final das linhas dos arquivos CSV.
-
-Essa coluna foi preservada inicialmente na RAW e removida somente na camada Trusted, após a validação de que permanecia vazia em todos os 918 registros.
+Nos arquivos de reclamações foi observada uma coluna adicional vazia causada por delimitador terminal. Ela foi preservada na RAW e removida somente na Trusted após validação de que estava vazia nos 918 registros.
 
 ---
 
 ## 6. Camada Trusted
 
-A camada Trusted concentrou as operações de tratamento e padronização realizadas com Spark.
+A Trusted foi produzida em **Parquet** e concentrou as operações de tratamento e padronização realizadas com Spark, incluindo:
 
-Entre as principais ações executadas destacam-se:
-
-- padronização dos nomes das colunas;
+- padronização de nomes de colunas;
 - tratamento de espaços e valores nulos;
-- conversão dos tipos de dados;
+- conversão de tipos;
 - normalização de CNPJ;
-- conversão de campos quantitativos para tipos numéricos;
 - tratamento do índice de reclamações;
-- preparação de chaves para integração;
+- preparação de chaves de integração;
 - padronização de nomes;
-- preservação da rastreabilidade por arquivo de origem.
+- preservação de rastreabilidade por arquivo de origem.
 
-A quantidade de registros foi integralmente preservada:
+As quantidades foram preservadas:
 
 | Conjunto Trusted | Registros |
 |---|---:|
@@ -170,7 +175,7 @@ A quantidade de registros foi integralmente preservada:
 
 ## 7. Tratamento do índice de reclamações
 
-Durante a transformação foram identificados diferentes formatos no campo de índice, incluindo valores como:
+Foram encontrados valores no padrão numérico brasileiro, como:
 
 ```text
 16.699,13
@@ -178,112 +183,78 @@ Durante a transformação foram identificados diferentes formatos no campo de í
 2.055,01
 ```
 
-Como os valores utilizavam convenção numérica brasileira, foi aplicada a seguinte regra:
+A regra aplicada foi:
 
-1. remoção do ponto utilizado como separador de milhar;
-2. substituição da vírgula decimal por ponto;
-3. conversão para tipo numérico.
+1. remover o ponto de milhar quando existia vírgula decimal;
+2. substituir a vírgula decimal por ponto;
+3. converter para tipo numérico.
 
-Após a aplicação da regra, não permaneceram valores inválidos decorrentes desse processo de conversão.
+Após o tratamento, não permaneceram valores inválidos decorrentes dessa conversão.
 
 ---
 
 ## 8. Estratégia de integração
 
-A análise dos dados mostrou a existência de dois grupos distintos na base de reclamações.
+As 918 reclamações foram separadas em dois ramos.
 
-### 8.1. Registros com CNPJ
-
-Foram identificados:
+### Registros com CNPJ
 
 ```text
-437 registros com CNPJ
+437 registros
 ```
 
-Esses registros foram integrados à base de Enquadramento utilizando uma chave de CNPJ padronizada.
-
-Resultado:
+Integração com a base de Enquadramento por CNPJ normalizado:
 
 ```text
-321 registros com Enquadramento encontrado
-116 registros sem correspondência
+321 com Enquadramento encontrado
+116 sem correspondência
 ```
 
-### 8.2. Registros sem CNPJ
-
-Foram identificados:
+### Registros sem CNPJ
 
 ```text
-481 registros sem CNPJ
+481 registros
 ```
 
-Todos esses registros pertenciam ao tipo:
+Todos pertenciam ao tipo `Conglomerado`. Para esse grupo, a integração foi realizada com a base Glassdoor por nome normalizado:
 
 ```text
-Conglomerado
+113 com Glassdoor encontrado
+368 sem correspondência
 ```
 
-Para esse grupo, a integração foi realizada com a base Glassdoor utilizando nomes normalizados.
-
-Resultado:
-
-```text
-113 registros com Glassdoor encontrado
-368 registros sem correspondência
-```
-
-Após o processamento independente dos dois grupos, os resultados foram novamente unidos com Spark.
+Os dois ramos foram unidos novamente com `unionByName`, preservando as **918 linhas**.
 
 ---
 
 ## 9. Controle de duplicidades
 
-A base de Enquadramento apresentava ocorrências repetidas após a normalização das chaves de CNPJ.
+Antes dos joins foram criadas referências canônicas para evitar multiplicação de linhas.
 
-Para evitar multiplicação de registros durante os joins, foi construída uma referência canônica com regra determinística, priorizando registros que não continham a indicação:
+No Enquadramento, registros não identificados como `PRUDENCIAL` receberam prioridade. Na Glassdoor Match, a seleção canônica priorizou:
 
-```text
-PRUDENCIAL
-```
+1. maior `match_percent`;
+2. maior `reviews_count`;
+3. `employer_name` como desempate adicional.
 
-Também foram identificados nomes duplicados na base Glassdoor.
+Com isso, os joins mantiveram a cardinalidade da base principal.
 
-Para seleção da referência utilizada no enriquecimento foram aplicados os seguintes critérios:
-
-1. maior percentual de correspondência;
-2. maior número de avaliações;
-3. nome da organização como critério adicional de desempate.
-
-Com essas regras foi possível preservar a cardinalidade da base principal.
+O arquivo `glassdoor_consolidado_join_match_less_v2.csv` foi preservado na Trusted, mas não utilizado automaticamente no enriquecimento da Delivery por critério conservador de qualidade semântica.
 
 ---
 
-## 10. Uso da base Glassdoor Match Less
+## 10. Camada Delivery e tabela final
 
-O arquivo:
+A Delivery foi gerada em **Parquet** com os dados tratados, integrados e enriquecidos.
 
-```text
-glassdoor_consolidado_join_match_less_v2.csv
-```
-
-foi mantido na camada Trusted, porém não foi utilizado automaticamente para enriquecimento da Delivery.
-
-A análise mostrou associações de menor confiabilidade semântica. Dessa forma, foi adotado um critério conservador, evitando incorporar à tabela final relações cuja qualidade não pudesse ser suficientemente sustentada.
-
----
-
-## 11. Camada Delivery
-
-A camada Delivery consolidou os dois métodos de enriquecimento.
-
-Resultado final:
+Resultado:
 
 ```text
 Registros = 918
 Colunas   = 47
 ```
 
-Distribuição dos métodos:
+Distribuição dos métodos de integração:
 
 | Método | Registros |
 |---|---:|
@@ -299,100 +270,59 @@ Resultados dos enriquecimentos:
 | Glassdoor encontrado | 113 |
 | Sem enriquecimento | 484 |
 
-A cobertura global foi de:
+Total enriquecido: **434 registros**, correspondente a **47,28%** das reclamações.
+
+O script `src/20_materializar_tabela_final.py` materializa explicitamente essa Delivery como tabela final tratada e unificada em:
 
 ```text
-47,28%
+data/delivery/tabela_final_reclamacoes
 ```
-
-A cardinalidade da base principal foi preservada:
-
-```text
-Reclamações de entrada = 918
-Delivery               = 918
-```
-
-Nenhuma reclamação foi eliminada em razão da ausência de correspondência nas bases auxiliares.
 
 ---
 
-## 12. Persistência no PostgreSQL
+## 11. Persistência da tabela final no PostgreSQL
 
-A camada Delivery também foi armazenada no PostgreSQL.
-
-Banco de dados:
+A mesma estrutura final foi gravada por JDBC no banco relacional:
 
 ```text
-atividade3
+public.tabela_final_reclamacoes
 ```
 
-Tabela:
+A execução confirmou:
 
 ```text
-public.delivery_reclamacoes_enriquecidas
+Parquet    : 918 registros / 47 colunas
+PostgreSQL : 918 registros / 47 colunas
+Schema     : equivalente
 ```
 
-A conexão entre Spark e PostgreSQL foi realizada por JDBC.
-
-As validações apresentaram:
+Uma validação independente pelo cliente `psql` confirmou posteriormente:
 
 ```text
-Delivery Parquet    = 918 registros
-Delivery PostgreSQL = 918 registros
-
-Parquet             = 47 colunas
-PostgreSQL          = 47 colunas
+public | tabela_final_reclamacoes | table | postgres
+registros = 918
+colunas   = 47
 ```
 
-A equivalência entre a estrutura Parquet e a tabela PostgreSQL também foi validada.
+Portanto, o requisito de disponibilização da camada Delivery como **tabela final em banco de dados relacional** está materialmente atendido.
 
 ---
 
-## 13. Qualidade textual e limitação da fonte
+## 12. Qualidade textual e limitação da fonte
 
-Durante a validação final foi identificada a presença do caractere Unicode de substituição:
+Foi identificada a presença do caractere Unicode de substituição `U+FFFD` em nomes provenientes da base de Enquadramento.
 
-```text
-U+FFFD
-�
-```
+A análise em nível de bytes identificou **3.109 ocorrências da sequência UTF-8 EF BF BD** no próprio arquivo de origem e **950 linhas afetadas** na Trusted de Enquadramento.
 
-em nomes provenientes do arquivo de Enquadramento.
+Na Delivery, a limitação atingiu 10 registros em `nome_enquadramento` e 10 em `nome_referencia`, exclusivamente no ramo de Enquadramento.
 
-A investigação em nível de bytes identificou no próprio arquivo de entrada:
-
-```text
-3.109 ocorrências da sequência EF BF BD
-```
-
-Foram identificadas:
-
-```text
-950 linhas afetadas
-```
-
-na camada Trusted de Enquadramento.
-
-Outras cópias disponíveis do arquivo apresentaram a mesma quantidade de ocorrências. Após a normalização das quebras de linha, os conteúdos comparados mostraram-se idênticos.
-
-Dessa forma, concluiu-se que a perda dos caracteres já estava presente na fonte antes do processamento realizado nesta atividade.
-
-Não foram realizadas substituições heurísticas para tentar reconstruir os caracteres, pois esse procedimento poderia introduzir informações não comprovadas.
-
-Na Delivery, a limitação foi propagada somente pelos campos derivados do Enquadramento:
-
-```text
-nome_enquadramento = 10 registros
-nome_referencia    = 10 registros
-```
-
-Nenhuma ocorrência foi identificada fora do ramo de integração baseado em CNPJ e Enquadramento.
+Não foi aplicada correção heurística, evitando introdução de informação não comprovada.
 
 ---
 
-## 14. Validação final do pipeline
+## 13. Validação final
 
-A validação consolidada apresentou:
+A validação consolidada do pipeline apresentou:
 
 ```text
 RAW                  : OK
@@ -407,93 +337,59 @@ QUALIDADE TEXTUAL    : OK - LIMITACAO DA FONTE DOCUMENTADA
 VALIDACAO_FINAL_PIPELINE_OK
 ```
 
-O resultado confirma a consistência estrutural do pipeline e a preservação da cardinalidade dos dados.
-
----
-
-## 15. Estrutura do projeto
+A etapa adicional de materialização formal da tabela final apresentou:
 
 ```text
-Atividade_3-Ingestao_ETL_Python_Spark
-│
-├── data
-│   ├── input
-│   ├── raw
-│   ├── trusted
-│   └── delivery
-│
-├── evidencias
-│   ├── 01_ambiente
-│   ├── 02_docker
-│   ├── 03_spark
-│   ├── 04_postgresql
-│   ├── 05_raw
-│   ├── 06_trusted
-│   ├── 07_delivery
-│   ├── 08_validacao
-│   └── 09_entrega
-│
-├── logs
-├── relatorio
-├── src
-│
-├── .gitignore
-├── docker-compose.yml
-└── README.md
-```
+RAW - FORMATO LIVRE       : OK - PARQUET ADOTADO
+TRUSTED - PARQUET         : OK
+DELIVERY - PARQUET        : OK
+TABELA FINAL TRATADA      : OK
+TABELA FINAL UNIFICADA    : OK
+POSTGRESQL RELACIONAL     : OK
+REGISTROS FINAIS          : 918
+COLUNAS FINAIS            : 47
+TABELA RELACIONAL         : public.tabela_final_reclamacoes
 
-As camadas geradas pelo processamento não precisam ser versionadas, pois podem ser reproduzidas pelos scripts do pipeline.
+REQUISITOS_ATIVIDADE3_OK
+```
 
 ---
 
-## 16. Scripts
+## 14. Scripts
 
-A pasta `src/` contém os códigos utilizados no desenvolvimento, incluindo scripts de:
+A pasta `src/` contém os scripts do pipeline e os diagnósticos realizados durante o desenvolvimento. Entre eles:
 
-- teste do Spark;
-- teste de gravação Parquet;
-- inspeção dos arquivos;
-- diagnóstico de encoding;
-- criação da camada RAW;
-- validação da RAW;
+- criação e validação da RAW;
 - criação das camadas Trusted;
-- diagnóstico e padronização das chaves;
-- análise da estratégia de integração;
+- diagnóstico de encoding;
+- tratamento do índice;
+- diagnóstico das chaves;
 - criação da Delivery;
 - testes JDBC;
 - gravação no PostgreSQL;
-- diagnóstico de qualidade textual;
-- validação final consolidada.
-
-Os scripts de diagnóstico foram preservados como parte das evidências metodológicas do processo de desenvolvimento.
+- validação final consolidada;
+- `20_materializar_tabela_final.py` — materialização e validação da tabela final tratada e unificada.
 
 ---
 
-## 17. Execução do ambiente
+## 15. Evidências finais
 
-Para iniciar o PostgreSQL:
+A pasta `evidencias/` mantém logs de ambiente, Docker, Spark, PostgreSQL, RAW, Trusted, Delivery, validações e entrega.
 
-```powershell
-docker compose up -d postgres
+As duas evidências finais que comprovam explicitamente os requisitos adicionais são:
+
+```text
+evidencias/09_entrega/E36_materializacao_tabela_final.log
+evidencias/09_entrega/E37_validacao_independente_tabela_final.log
 ```
 
-Para verificar os serviços:
+A `E36` registra a execução Spark que materializou a tabela final em Parquet e PostgreSQL e terminou com `REQUISITOS_ATIVIDADE3_OK`.
 
-```powershell
-docker compose ps
-```
+A `E37` registra a consulta independente ao PostgreSQL que confirmou a existência de `public.tabela_final_reclamacoes`, com **918 registros e 47 colunas**.
 
-Exemplo de execução de um script Spark:
+---
 
-```powershell
-docker compose run --rm spark `
-  /opt/spark/bin/spark-submit `
-  --master "local[2]" `
-  --driver-memory 1g `
-  /workspace/src/05_criar_raw.py
-```
-
-Para scripts que utilizam conexão com PostgreSQL:
+## 16. Execução da etapa final
 
 ```powershell
 docker compose run --rm spark `
@@ -502,71 +398,35 @@ docker compose run --rm spark `
   --driver-memory 1g `
   --conf spark.jars.ivy=/tmp/.ivy2 `
   --packages org.postgresql:postgresql:42.7.13 `
-  /workspace/src/16_gravar_delivery_postgresql.py
+  /workspace/src/20_materializar_tabela_final.py
+```
+
+Validação independente no PostgreSQL:
+
+```powershell
+docker exec -i postgres_atividade3 `
+  psql -U postgres -d atividade3 `
+  -c "SELECT COUNT(*) FROM public.tabela_final_reclamacoes;"
 ```
 
 ---
 
-## 18. Evidências
+## 17. Resultado final
 
-A pasta `evidencias/` reúne os logs e registros produzidos ao longo do desenvolvimento.
+A Atividade 3 resultou em um pipeline reprodutível com:
 
-As evidências documentam:
+- RAW em formato livre, com Parquet adotado;
+- Trusted em Parquet;
+- Delivery em Parquet;
+- tabela final tratada e unificada;
+- **918 registros e 47 colunas**;
+- persistência da mesma tabela em `public.tabela_final_reclamacoes` no PostgreSQL;
+- processamento de dados integralmente realizado com Spark;
+- validações de cardinalidade, schema, enriquecimento e qualidade textual;
+- evidências técnicas da materialização e da validação independente.
 
-- configuração do ambiente;
-- execução do Docker;
-- funcionamento do Spark;
-- inspeção dos dados;
-- integridade das fontes;
-- criação da RAW;
-- tratamento da Trusted;
-- diagnósticos de integração;
-- criação da Delivery;
-- conexão JDBC;
-- persistência no PostgreSQL;
-- problemas encontrados durante o desenvolvimento;
-- diagnóstico da qualidade textual;
-- validação final do pipeline.
-
-Essas evidências constituem parte do processo de rastreabilidade e reprodutibilidade do trabalho.
-
----
-
-## 19. Observação de segurança
-
-As credenciais utilizadas no PostgreSQL:
+A execução final foi encerrada com:
 
 ```text
-usuario: postgres
-senha: postgres
-```
-
-foram adotadas exclusivamente para o ambiente acadêmico local.
-
-Em ambiente produtivo, credenciais não devem ser armazenadas diretamente em arquivos de configuração ou código-fonte, devendo ser utilizadas variáveis de ambiente ou soluções específicas de gerenciamento de segredos.
-
----
-
-## 20. Resultado final
-
-O pipeline desenvolvido atendeu aos objetivos propostos para a Atividade 3, contemplando:
-
-- ingestão de fontes heterogêneas;
-- organização dos dados em RAW, Trusted e Delivery;
-- tratamento integral com Apache Spark;
-- armazenamento intermediário em Parquet;
-- integração de múltiplas fontes;
-- tratamento de duplicidades;
-- preservação da cardinalidade;
-- enriquecimento dos dados;
-- disponibilização final no PostgreSQL;
-- documentação das limitações de qualidade existentes nas fontes;
-- geração de evidências de execução e validação.
-
-O resultado final contém **918 registros e 47 colunas**, com correspondência de enriquecimento para **434 registros**, equivalente a uma cobertura global de **47,28%**.
-
-A execução foi encerrada com:
-
-```text
-VALIDACAO_FINAL_PIPELINE_OK
+REQUISITOS_ATIVIDADE3_OK
 ```
