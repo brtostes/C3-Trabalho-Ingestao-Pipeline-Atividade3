@@ -1,0 +1,18 @@
+============================================================
+VALIDACAO INDEPENDENTE DA TABELA FINAL NO POSTGRESQL
+============================================================
+                  List of relations
+ Schema |           Name           | Type  |  Owner
+--------+--------------------------+-------+----------
+ public | tabela_final_reclamacoes | table | postgres
+(1 row)
+
+ registros
+-----------
+       918
+(1 row)
+
+ colunas
+---------
+      47
+(1 row)

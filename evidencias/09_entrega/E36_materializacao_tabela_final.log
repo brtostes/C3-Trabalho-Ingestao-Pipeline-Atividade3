@@ -1,0 +1,32 @@
+ATIVIDADE 3 - MATERIALIZACAO DA TABELA FINAL TRATADA E UNIFICADA
+====================================================================================================
+
+Delivery de origem : /workspace/data/delivery/reclamacoes_enriquecidas
+Registros           : 918
+Colunas             : 47
+
+TABELA FINAL - DELIVERY PARQUET
+Caminho             : /workspace/data/delivery/tabela_final_reclamacoes
+Registros           : 918
+Colunas             : 47
+
+TABELA FINAL - POSTGRESQL
+Tabela              : public.tabela_final_reclamacoes
+Registros           : 918
+Colunas             : 47
+
+====================================================================================================
+RESUMO DOS REQUISITOS DA ATIVIDADE 3
+====================================================================================================
+RAW - FORMATO LIVRE       : OK - PARQUET ADOTADO
+TRUSTED - PARQUET         : OK
+DELIVERY - PARQUET        : OK
+TABELA FINAL TRATADA      : OK
+TABELA FINAL UNIFICADA    : OK
+POSTGRESQL RELACIONAL     : OK
+REGISTROS FINAIS          : 918
+COLUNAS FINAIS            : 47
+TABELA RELACIONAL         : public.tabela_final_reclamacoes
+====================================================================================================
+REQUISITOS_ATIVIDADE3_OK
+====================================================================================================
